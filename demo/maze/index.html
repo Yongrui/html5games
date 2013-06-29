@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Maze Game</title>
+	<script src="maze.js"></script>
+	<style>
+		html, body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		div {
+			margin: 20px auto;
+			width: 609px;
+		}
+		canvas {
+			border: 6px double black;
+			display: block;
+		}
+		img {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<canvas id="mazeCanvas">Your browser don't support HTML5.</canvas>
+		<img src="face.png" id="face">
+		<button id="replay" onclick="replay();">Replay</button>
+	</div>
+</body>
