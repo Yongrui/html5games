@@ -152,6 +152,12 @@ var TicTacToe = function(io) {
 			}
 		}
 	};
-
+	document.getElementById("computer").addEventListener("click", function() {
+		computer();
+		this.disabled = true;
+	});
+	document.getElementById("replay").addEventListener("click", function() {
+		window.location = window.location.href;
+	});
 	io.canvas.addEventListener("mousedown", player);
 }
