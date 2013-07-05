@@ -157,7 +157,7 @@ var TicTacToe = function(io) {
 			showMessage("平局！");
 		} else {
 			//resetButton.style.display = "inline-block";
-			resetButton.innerHTML = "重新开始";
+			showMessage("轮到你了...");
 		}
 	};
 
