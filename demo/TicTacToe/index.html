@@ -5,12 +5,41 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>TicTacToe</title>
 	<style>
-        html{background-color: black}
-        canvas{margin: 20px auto; display: block; border: 2px solid white;}
+        html, body {
+        	background-color: black;
+        	width: 100%; height: 100%;
+        	margin: 0; padding: 0;
+        	overflow: hidden;
+        }
+        canvas {border: 2px solid white; display: block;}
+        #message {color: white; display: inline-block;}
+        #wrap {
+        	background: rgba(100, 100, 100, .5);
+        	padding: 10px 2px;
+        	text-align: center;
+        }
+        #reset {display: none;}
+        .button {
+        	padding: 5px 10px;
+        	border: 2px solid white;
+        	color: white;
+        	font-size: 80%;
+        	text-decoration: none;
+        }
+        .highlight {
+        	position: absolute;
+        	top: 30%;
+        }
     </style>
 </head>
 <body>
-	<canvas id="ttt" width="360px" height="360px"></canvas>
+	<canvas id="ttt"></canvas>
+	<div id="wrap" class="highlight">
+		<p id="message">谁先来...</p>
+		<a href="#" id="reset" class="button">重新开始</a>
+		<a href="#" id="me" class="button">我先来</a>
+		<a href="#" id="computer" class="button">电脑先来</a>
+	</div>
 	<script src="iioEngine.min.js"></script>
 	<script src="TicTacToe.js"></script>
 	<script type="text/javascript">iio.start(TicTacToe, "ttt");</script>
