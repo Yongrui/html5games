@@ -6,6 +6,7 @@ var TicTacToe = function(io) {
 	var metaWrap = document.getElementById("wrap");
 	var meBtn = document.getElementById("me");
 	var computerBtn = document.getElementById("computer");
+	var button = document.getElementsByClassName('button');
 	var canvas = io.canvas;
 
 	var step = 0;
@@ -156,7 +157,6 @@ var TicTacToe = function(io) {
 			gameOver();
 			showMessage("平局！");
 		} else {
-			//resetButton.style.display = "inline-block";
 			showMessage("轮到你了...");
 		}
 	};
@@ -179,50 +179,52 @@ var TicTacToe = function(io) {
 				showMessage("平局！");
 			} else {
 				computer();
-				//resetButton.style.display = "inline-block";
 			}
 		}
 	};
 
 	var gameOver = function() {
-		canvas.removeEventListener("mousedown", player);
-
 		resetButton.innerHTML = "再来一局";
 		resetButton.style.display = "inline-block"
-		resetButton.addEventListener("click", function(event) {
-			grid.resetCells();
-			step = 0;
-			showMessage("谁先来...");
-			meBtn.style.display = "inline-block";
-			computerBtn.style.display = "inline-block";
-			resetButton.style.display = "none";
-			start();
-		});
-
 		metaWrap.className = "highlight";
+		canvas.removeEventListener("mousedown", player);
 	};
 
 	var start = function() {
 		init();
 
-		computerBtn.addEventListener("click", function(event) {
-			metaWrap.className = "";
-			meBtn.style.display = "none";
-			computerBtn.style.display = "none";
-			showMessage("轮到你了...");
+		function handler(event) {
 
-			init();
-			computer();
-			canvas.addEventListener("mousedown", player);
-		});
-		meBtn.addEventListener("click", function(event) {
-			metaWrap.className = "";
-			meBtn.style.display = "none";
-			computerBtn.style.display = "none";
-			showMessage("你先来...");
+			switch(event.target.id) {
+				case "reset":
+					init();
+					step = 0;
+					showMessage("谁先来...");
+					meBtn.style.display = "inline-block";
+					computerBtn.style.display = "inline-block";
+					resetButton.style.display = "none";
+					metaWrap.className = "highlight";
+					break;
+				case "computer":
+					showMessage("轮到你了...");
+					metaWrap.className = "";
+					meBtn.style.display = "none";
+					computerBtn.style.display = "none";
+					canvas.addEventListener("mousedown", player);
+					computer();
+					break;
+				case "me":
+					showMessage("你先来...");
+					metaWrap.className = "";
+					meBtn.style.display = "none";
+					computerBtn.style.display = "none";
+					canvas.addEventListener("mousedown", player);
+					break;
+				default: return;
+			}
+		};
 
-			canvas.addEventListener("mousedown", player);
-		});
+		metaWrap.addEventListener("click", handler);
 	};
 
 	start();
